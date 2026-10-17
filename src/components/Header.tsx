@@ -13,7 +13,7 @@ export default function Header() {
       <div className="mx-auto flex h-full w-full max-w-[1240px] items-center justify-between gap-4">
         <a
           href="#producto"
-          aria-label="Rubor en Crema Elaya, inicio"
+          aria-label="Rubor en Crema, inicio"
           className="font-soft flex items-center gap-2.5 whitespace-nowrap text-xl font-medium leading-none tracking-[-0.01em] no-underline max-[760px]:text-[1.1rem]"
         >
           <svg viewBox="0 0 22 25" className="h-[25px] w-[22px] flex-none" aria-hidden="true">

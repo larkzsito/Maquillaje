@@ -21,7 +21,7 @@ type Store = {
 }
 
 const Ctx = createContext<Store | null>(null)
-const KEY = 'elaya-bag'
+const KEY = 'maquillaje-bag'
 
 function load(): BagItem[] {
   try {
@@ -78,7 +78,7 @@ export function StoreProvider({ children }: { children: ReactNode }) {
       (i) => `- ${i.q} x ${i.n}${i.shade !== null ? ` (${SHADES[i.shade].id})` : ''} - ${money(i.p * i.q)}`,
     )
     const orderText = items.length
-      ? `Hola Elaya, quiero pedir:\n${lines.join('\n')}\nTotal: ${money(total)}\nMi ciudad: `
+      ? `Hola, quiero hacer un pedido:\n${lines.join('\n')}\nTotal: ${money(total)}\nMi ciudad: `
       : ''
     return {
       items,

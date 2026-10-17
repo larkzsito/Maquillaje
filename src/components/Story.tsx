@@ -1,5 +1,5 @@
 import { useRef, useState, type ReactNode } from 'react'
-import { SHADES } from '../data'
+import { RUBOR_CREMA_IMGS, SHADES } from '../data'
 import { CHAPTER_CENTERS, CHAPTER_LABELS, SHADE_SCROLL, scrollToProgress, useStoryScroll } from '../hooks/useStoryScroll'
 import HexChip from './HexChip'
 
@@ -57,10 +57,10 @@ export default function Story() {
               </span>
             </h1>
             <p className="mt-[1.4rem] max-w-[30rem] text-[1.12rem] text-ink2 max-[760px]:mt-3 max-[760px]:text-base">
-              De Elaya Belleza, en frasco hexagonal de 5&nbsp;g. Desliza para ver cómo se funde en la piel.
+              Fórmula cremosa en frasco hexagonal de 5&nbsp;g. Desliza para ver cómo se funde en la piel.
             </p>
             <div className="mt-[1.4rem] inline-flex items-baseline gap-2 rounded-full border border-line bg-paper px-4 py-2 font-semibold tabular-nums max-[760px]:mt-3">
-              $21.900 <small className="text-[.82rem] font-medium text-ink2">COP en la tienda oficial</small>
+              $21.900 <small className="text-[.82rem] font-medium text-ink2">COP</small>
             </div>
             <div className="mt-8 flex items-center gap-3 text-sm text-ink2 max-[760px]:hidden" aria-hidden="true">
               <i className="block h-10 w-0.5 origin-top animate-cue bg-gradient-to-b from-ink to-transparent" />
@@ -190,7 +190,7 @@ export default function Story() {
               <dt className="text-ink2">Textura</dt>
               <dd className="m-0 font-semibold">Cremosa, pigmentación construible</dd>
               <dt className="text-ink2">Precio</dt>
-              <dd className="m-0 font-semibold">$21.900 COP en elayabelleza.com</dd>
+              <dd className="m-0 font-semibold">$21.900 COP</dd>
             </dl>
             <div className="mt-6 flex flex-wrap gap-3 max-[760px]:mt-4">
               <a href="#tienda" className={`${btn} bg-ink text-bg hover:bg-[#43315A]`}>
@@ -249,8 +249,15 @@ export default function Story() {
               data-ref="bottle"
               role="img"
               aria-label="Frasco hexagonal de rubor en crema de 5 gramos con tapa rosada"
-              className="bottle absolute inset-0 m-auto aspect-[410/720] h-[var(--H)] will-change-transform"
-            />
+              className="absolute inset-0 flex items-center justify-center will-change-transform"
+            >
+              <img
+                src={RUBOR_CREMA_IMGS[SHADES[shade].id]}
+                alt={SHADES[shade].id}
+                className="h-full w-auto object-contain drop-shadow-xl"
+                style={{ maxHeight: 'var(--H)' }}
+              />
+            </div>
           </div>
         </div>
 
