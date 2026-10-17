@@ -1,0 +1,121 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Lets --shade animate smoothly when the chosen tone changes. */
+@property --shade {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #f2806b;
+}
+
+:root {
+  color-scheme: light;
+  --bg: #f7f4fc;
+  --panel: #efeaf9;
+  --ink: #2b1e36;
+  --ink-2: #5a4c6c;
+  --line: #dad2ea;
+  --rose: #e98a86;
+  --rose-deep: #b03e54;
+  --paper: #ffffff;
+  --shade: #f2806b;
+  --hh: 60px;
+  --gutter: max(16px, env(safe-area-inset-left, 0px));
+  --gutter-r: max(16px, env(safe-area-inset-right, 0px));
+  --hex: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+  transition: --shade 0.6s ease;
+}
+
+@media (max-width: 760px) {
+  :root {
+    --hh: 56px;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+[hidden] {
+  display: none !important;
+}
+html {
+  scroll-behavior: smooth;
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font: 400 1.0625rem/1.6 'Plus Jakarta Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  padding-left: var(--gutter);
+  padding-right: var(--gutter-r);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+/* Paints the phone's top inset in the page colour so nothing scrolls under the system bar. */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0 0 auto;
+  height: env(safe-area-inset-top, 0px);
+  z-index: 60;
+  background: var(--bg);
+}
+button {
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+:focus-visible {
+  outline: 3px solid var(--rose-deep);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+@layer components {
+  .font-soft {
+    font-family: 'Fraunces', Georgia, 'Times New Roman', serif;
+    font-variation-settings: 'SOFT' 100, 'WONK' 0;
+  }
+  .clip-hex {
+    clip-path: var(--hex);
+  }
+  /* Product photo: multiplied over the hexagon plate and feathered at the edges. */
+  .bottle {
+    background: url('./assets/bottle.jpg') center / 100% 100% no-repeat;
+    mix-blend-mode: multiply;
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 14%, #000 86%, transparent),
+      linear-gradient(to bottom, transparent, #000 6%, #000 94%, transparent);
+    -webkit-mask-composite: source-in;
+    mask-image: linear-gradient(to right, transparent, #000 14%, #000 86%, transparent),
+      linear-gradient(to bottom, transparent, #000 6%, #000 94%, transparent);
+    mask-composite: intersect;
+  }
+  .pin-box {
+    top: calc(env(safe-area-inset-top, 0px) + var(--hh));
+    height: calc(100svh - var(--hh) - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px));
+  }
+  .stage-h {
+    --H: clamp(280px, min(66svh, 50vw), 640px);
+  }
+  @media (max-width: 760px) {
+    .stage-h {
+      --H: clamp(190px, min(36svh, 78vw), 420px);
+    }
+  }
+  .scroll-mt-header {
+    scroll-margin-top: calc(var(--hh) + env(safe-area-inset-top, 0px));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition-duration: 0.01ms !important;
+  }
+}
